@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: victor/laravel-pg:latest
+    container_name: victor_laravel-app-pgsql-2
+    ports:
+      - "8082:80"
+    volumes:
+      - .:/var/www/html/laravel_w_pgsql
+    depends_on:
+      - postgres
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=laravel
+      - DB_USERNAME=laravel
+      - DB_PASSWORD=secret
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=laravel
+      - POSTGRES_USER=laravel
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  postgres_data:
