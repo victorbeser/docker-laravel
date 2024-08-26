@@ -1,0 +1,13 @@
+- composer create-project --prefer-dist laravel/laravel nome-do-projeto
+
+- Configurar Nome da Pasta e Conexão de Banco Dockerfile | docker-compose.yaml | .env [APP_KEY] | .docker/vhost.conf | conf/database.php
+
+- docker-compose build
+
+- docker-compose up -d
+
+- docker-compose ps
+
+- docker-compose exec [nome] php artisan key:generate *se necessário
+
+- docker-compose exec [nome] php artisan migrate
